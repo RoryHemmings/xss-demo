@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block main %}
+<h1 class="mt-5">Most Secure Message Board of All-Time</h1>
+<div class="main-page">
+  <br />
+
+  <form method="POST" action="/upload-message/{{page_id}}" class="upload-message-form">
+    <textarea class="form-control" placeholder="Your Message" name="message" type="text"></textarea><br>
+    <input class="form-control" placeholder="Your Name" name="author" type="text" /><br>
+    <input class="btn btn-primary" type="submit" value="Submit"></input>
+  </form><br><br>
+
+  <div class="container jumbotron messages">
+    <p class="lead">Messages:</p>
+    <hr>
+    {% for message in messages %}
+    <div class="message">
+      <p>{{ message.date|safe }}</p>
+      <p>{{ message.content|safe }}</p>
+      <p>Author: {{ message.author|safe }}</p>
+      <hr>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
